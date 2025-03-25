@@ -4,6 +4,7 @@ import { CdkAwsTsStack } from '../lib/cdk-aws-ts-stack';
 
 const app = new cdk.App();
 new CdkAwsTsStack(app, 'CdkAwsTsStack', {
+  stackName: "cdk-test-stack"
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
