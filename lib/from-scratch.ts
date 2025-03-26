@@ -5,7 +5,8 @@ import { Construct } from 'constructs'
 export class FromScratch extends cdk.Stack {
 
     private stackSuffix : string; 
-    
+    public readonly bucketArn : string 
+
     constructor(scope : Construct, id: string, props? : cdk.StackProps){
         super(scope, id, props)
         this.initializeSuffix()
@@ -17,6 +18,8 @@ export class FromScratch extends cdk.Stack {
                 expiration: cdk.Duration.days(2)
             }]
         })
+
+        this.bucketArn = z.bucketArn;
 
         new cdk.CfnOutput(this, 'bucketToExport', {
             value: z.bucketArn!,

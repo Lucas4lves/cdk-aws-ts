@@ -3,8 +3,12 @@ import { Function as Lambda , Runtime, Code } from 'aws-cdk-lib/aws-lambda'
 import { Construct } from 'constructs'
 
 
+interface HandlerStackProps extends cdk.StackProps {
+    targetBucketArn : string
+}
+
 export class HandlerStack extends cdk.Stack{
-    constructor(scope: Construct, id: string, props? : cdk.StackProps){
+    constructor(scope: Construct, id: string, props : HandlerStackProps){
         super(scope, id, props)
         const targetBucket = cdk.Fn.importValue('bucket-to-import')
         new Lambda(this, 'handler-lambda', {
@@ -16,7 +20,7 @@ export class HandlerStack extends cdk.Stack{
                     }
                 `),
             environment: {
-                TARGET_BUCKET : targetBucket
+                TARGET_BUCKET : props.targetBucketArn
             }
         })
     }

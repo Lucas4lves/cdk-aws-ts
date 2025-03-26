@@ -35,7 +35,7 @@ new SecondStack(app, 'SecondStack', {
   }
 });
 
-new FromScratch(app, 'FromScratch', {
+const fc = new FromScratch(app, 'FromScratch', {
   stackName: 'from-scratch',
   tags: {
     "iac": "true",
@@ -45,6 +45,7 @@ new FromScratch(app, 'FromScratch', {
 
 new HandlerStack(app, 'HandlerStack', {
   stackName: 'handler-stack',
+  targetBucketArn: fc.bucketArn,
   tags: {
     "iac": "true",
     "squad": "devops"
