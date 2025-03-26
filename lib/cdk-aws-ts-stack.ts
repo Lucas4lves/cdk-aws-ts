@@ -35,8 +35,7 @@ export class CdkAwsTsStack extends cdk.Stack {
     /**
      * ########################################################
      */
-   const cfnBucket = new CfnBucket(this, 'cfnBucket', {
-      bucketName: bucketName.valueAsString, 
+   const cfnBucket = new CfnBucket(this, 'cfnBucket', { 
       lifecycleConfiguration: {
         rules: [{
           expirationInDays: duration.valueAsNumber,
@@ -45,9 +44,9 @@ export class CdkAwsTsStack extends cdk.Stack {
       }
     })
     
-    new cdk.CfnOutput(this, 'cfnBuckeName', {
-      value: cfnBucket.bucketName!
-    })
+    // new cdk.CfnOutput(this, 'cfnBuckeName', {
+    //   value: cfnBucket.bucketName!
+    // })
 
     //scope/stack
     // new Bucket(this, 'ThisIsaL2Bucket', {

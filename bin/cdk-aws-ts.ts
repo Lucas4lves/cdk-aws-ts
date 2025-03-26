@@ -1,10 +1,17 @@
 #!/usr/bin/env node
 import * as cdk from 'aws-cdk-lib';
 import { CdkAwsTsStack } from '../lib/cdk-aws-ts-stack';
+import { SecondStack } from '../lib/second-stack';
+import { FromScratch } from '../lib/from-scratch';
+import { HandlerStack } from '../lib/handlerStack'
 
 const app = new cdk.App();
 new CdkAwsTsStack(app, 'CdkAwsTsStack', {
-  stackName: "cdk-test-stack"
+  stackName: "cdk-test-stack",
+  tags: {
+    "iac": "true",
+    "squad": "devops"
+  }
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
@@ -19,3 +26,27 @@ new CdkAwsTsStack(app, 'CdkAwsTsStack', {
 
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 });
+
+new SecondStack(app, 'SecondStack', {
+  stackName: "second-stack",
+  tags: {
+    "iac": "true",
+    "squad": "devops"
+  }
+});
+
+new FromScratch(app, 'FromScratch', {
+  stackName: 'from-scratch',
+  tags: {
+    "iac": "true",
+    "squad": "devops"
+  }
+})
+
+new HandlerStack(app, 'HandlerStack', {
+  stackName: 'handler-stack',
+  tags: {
+    "iac": "true",
+    "squad": "devops"
+  }
+})
